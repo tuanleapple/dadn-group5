@@ -28,6 +28,7 @@ docker-compose up -d
 ```docker
 docker exec -it laravel_app bash
 cd html
+compose install
 php artisan migrate
 php artisan tinker
 
