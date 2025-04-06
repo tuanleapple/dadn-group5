@@ -9,7 +9,7 @@ APP_NAME=Laravel
 APP_ENV=local
 APP_KEY=  # Tạo bằng lệnh `php artisan key:generate`
 APP_DEBUG=true
-APP_URL=http://localhost:8000
+APP_URL=http://localhost:8081
 
 DB_CONNECTION=mysql
 DB_HOST=db
@@ -25,15 +25,23 @@ SESSION_DRIVER=database
 docker-compose up -d
 
 ## Tạo bảng sessions (nếu dùng session database)
-
+```docker
 docker exec -it laravel_app bash
-php artisan session:table
+cd html
 php artisan migrate
-exit
+php artisan tinker
 
+\App\Models\User::create([
+    'name' => 'Admin User',
+    'email' => 'admin@example.com',
+    'password' => Hash::make('password123')
+]);
+
+exit
+```
 
 Truy cập
-Ứng dụng Laravel: http://localhost (hoặc http://localhost:8000 nếu đổi cổng)
+Ứng dụng Laravel: http://localhost:8081
 phpMyAdmin: http://localhost:8080
 User: laravel_user
 Password: laravel_password
